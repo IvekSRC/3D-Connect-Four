@@ -1,0 +1,50 @@
+Projekat: 3D Connect Four
+Tim: Team8s
+Clanovi tima: 
+ - Mila Stankovic 16892
+ - Ivan Petkovic 16811
+ - Uros Obradovic 16793
+Faza: III 
+Naziv dokumenta: Izveštaj
+
+Modifikovali smo F2 i dodali funkcije :
+ - generisiSveMogucePoteze kojoj prosledjujemo listu i pozivamo generisiMogucePoteze
+ - generisiMogucePoteze koja poziva za svaku vrstu funkciju generisiMogucePotezeVrsteK
+ - generisiMogucePotezeVrsteK koja proverava svaki stubic te vrste i ukoliko ima slobodnog mesta na njemu, dodaje indekse tog stubica u listu
+ 
+Rasteretili smo glavnu funkciju start tako sto smo dodali nove dve funkcije :
+ - igracProtivIgraca koja funkcionise kao i do sada
+ - igracProtivRacunara koja za potez racunara generise random vrednost iz liste mogucih poteza
+ 
+MinMax (state move aplha beta currentDepth isMyMove)
+	Opis: Implementacija minimax algoritma sa alfa-beta odsecanjem.
+	Parametri:
+	 - state je stanje na tabli
+	 - move je poslednje odigrani potez
+	 - alpha, beta su parametri neophodni za alfa-beta odsecanje
+	 - currentDepth je dubina do koje se radi ispitvanje. Krece od zadate dubine i u trenutku kada dostigne 0 vrši se evaluacija
+	 - isMyMove je logicka vrednost koja opisuje ko je na potezu
+	Implementacija:
+		Naizmenicno se igraju potezi dva igraca pozivajuci funkcije maxPlay i minPlay. Za poziv ove dve
+		funkcije se uvek prosleduje lista mogucih poteza koje oni mogu da odigraju. U trenutku kada je
+		dubina ispitivanja dostigla 0, ili više nema poteza u listi mogucih poteza vrši se evaluacija.
+		MinMax vraca parove (potez, evaluacija), sem na kranjem izlasku iz rekurzije kada vraca samo
+		potez koji treba odigrati.
+		
+MaxPlay (movesList bestMove depth alpha beta isMyMove previousState)
+	Opis: Igra poteze maksmizirajuceg igraca.
+	Parametri:
+		Znacenje parametara je jasno iz samih naziva i uz objašnjenje parametara iz prethodne funkcije.
+	Implementacija:
+		Poziva se MinMax algoritam sa alfa-beta odsecanjem uz dekrementiranu dubinu za elemente iz
+		prosledene liste poteza kako bi se odredio naredni potez, tj. potez min-igraca. Vrši se poredenje
+		alfa vrednosti sa dobijenom evaluacijom da se odredi da li ima mogucnosti za odsecanjem.
+		Ukoliko nema odsecanja vrši se provera poteza za naredni u listi poteza koja je prosledena. Kraj
+		rekurzije je isti kao i za MinMax algoritam.
+
+MinPlay (movesList bestMove depth alpha beta isMyMove previousState)
+	Opis, parametri i implementacija su analogni funkciji MaxPlay sem što ova funkcija igra poteze
+	minimizirajuceg igraca.
+	
+evaluate (move isMyMove state)
+	Funkcija koja imitira evaluaciju. Bice, po planu, implementirana u narednoj fazi.

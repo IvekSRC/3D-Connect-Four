@@ -1,0 +1,13 @@
+Projekat: 3D Connect Four
+Tim: Team8s
+Clanovi tima: 
+ - Mila Stankovic 16892
+ - Ivan Petkovic 16811
+ - Uros Obradovic 16793
+Faza: IV 
+Naziv dokumenta: Izveštaj
+
+- Funkciju heuristike nismo uspeli da implementiramo.
+- "Ispeglali" smo malo kod i modifikovali neke delove:
+  1.Funkciju potezX smo preimenovali u potez, jer smo prvo mislili da cemo praviti     identicnu funkciju i za O, pa smo zbog toga nazvali potezX.
+  2.Izmenili smo funkciju za odredjivanje ko igra prvi (X ili O) i dodali je u glavnoj     funkciju start.

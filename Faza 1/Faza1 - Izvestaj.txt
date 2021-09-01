@@ -1,0 +1,53 @@
+Projekat: 3D Connect Four
+Tim: Team8s
+Clanovi tima: 
+ - Mila Stankovic 16892
+ - Ivan Petkovic 16811
+ - Uros Obradovic 16793
+Faza: I - (Update - Doradjena funkcija odigravanja poteza)
+Naziv dokumenta: Izveštaj
+
+Problemi : 
+ - Definisanje pocetnog stanja problema (igre)
+ - Promena stanja problema (igre) / odigravanje poteza 
+ - Prikaz trenutnog stanja problema (igre)
+
+Tabela za igru dimenzije n = 4 izgleda ovako:
+
+0 1 2 3 4 5 6 7 8 9 A B C D E F 
+       -      -       -       -
+    - -     - -     - -     - -
+  - - -   - - -   - - -   - - -
+- - - - - - - - - - - - - - - -
+- - -   - - -   - - -   - - -
+- -     - -     - -     - - 
+-       -       -       -
+0 1 2 3 4 5 6 7 8 9 A B C D E F 
+
+Reprezentacija ove matrice u memoriji:
+(
+   (#\A (#\A ((0 -) (1 -) (2 -) (3 -))) (#\B ((0 -) (1 -) (2 -) (3 -))) (#\C ((0 -) (1 -) (2 -) (3 -))) (#\D ((0 -) (1 -) (2 -) (3 -))))
+   (#\B (#\A ((0 -) (1 -) (2 -) (3 -))) (#\B ((0 -) (1 -) (2 -) (3 -))) (#\C ((0 -) (1 -) (2 -) (3 -))) (#\D ((0 -) (1 -) (2 -) (3 -))))
+   (#\C (#\A ((0 -) (1 -) (2 -) (3 -))) (#\B ((0 -) (1 -) (2 -) (3 -))) (#\C ((0 -) (1 -) (2 -) (3 -))) (#\D ((0 -) (1 -) (2 -) (3 -))))
+   (#\D (#\A ((0 -) (1 -) (2 -) (3 -))) (#\B ((0 -) (1 -) (2 -) (3 -))) (#\C ((0 -) (1 -) (2 -) (3 -))) (#\D ((0 -) (1 -) (2 -) (3 -))))
+)
+
+Matrica se pamti kao lista asocijativnih listi.Polja stubica su prazna na pocetku ( Npr. (0 -), gde je 0 indeks samog polja na stubicu, a - oznacava da je prazno).
+
+Bitnije funkcije:
+
+rowInit: 
+	- Inicijalizuje polja samog stubica/stapica.Kreira ovaj deo iz reprezentacije matrice ((0 -) (1 -) (2 -) (3 -)))
+		
+matrixFactory:
+	- Inicijalizuje kolone u vrsti, kreira (#\A ((0 -) (1 -) (2 -) (3 -))) (#\B ((0 -) (1 -) (2 -) (3 -))) (#\C ((0 -) (1 -) (2 -) (3 -))) (#\D ((0 -) (1 -) (2 -) (3 -)))
+	
+potezX1:
+    - Funkcija odigravanja poteza, poziva rekurzivno samu sebe kao i ostale funkcije dok ne dodje do zeljenog stubica, nakon cega, ukoliko ima slobodnog mesta, postavlja karakter. 
+		
+kreirajMatricu (rowIndex):
+	Inicijalizuje vrste same matrice i konacno kreira samu matricu.
+
+Napomena: Nisu sve funkcije detaljno objasnjene zbog njihovog niskog nivoa kompleksnosti.
+U dokumentu sa kodom su prilozene sve funkcije koje su implementirane, pri cemu su 
+kompleksnije funkcije opisane samo u 1 recenici. Detaljni opis je u ovom dokumentu.

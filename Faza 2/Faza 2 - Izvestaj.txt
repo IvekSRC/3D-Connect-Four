@@ -1,0 +1,250 @@
+Projekat: 3D Connect Four
+Tim: Team8s
+Clanovi tima: 
+ - Mila Stankovic 16892
+ - Ivan Petkovic 16811
+ - Uros Obradovic 16793
+Faza: II 
+Naziv dokumenta: Izveštaj
+
+sviHipPotezi
+  - Ova funkcija nam stampa sve moguce naredne poteze za prosledjeni simbol X ili O.
+  - Poziva hipPotez za svaki stubic.
+hipPotez
+  - Odigra potez, stampa pomocnu i setuje pomocnu nazad na playground.
+hPotez
+  - Proverava dal ima mesta na stubicu, ako ima odigrava potez na tom stubicu.
+
+odrediPobednika
+  - Postavlja promenljive skorX i skorO na 0 i poziva odgovarajuce kombinacije za proveru povezanosti.
+  - Poziva se 
+    - proveriVisinu
+    - proveraPoNivoima 
+	- proveraPoNivoimaSuprotanSmer1
+	- proveriGlavnuDijagonalu11
+	- proveriGlavnuDijagonalu12
+	- proveriDijagonaluUPenjanju11
+	- proveriDijagonaluUPenjanju21
+	- proveriGlavnuDijagonaluUPenjanju1
+	- proveriGlavnuDijagonaluUPadanju1
+	- proveriGlavnuDijagonaluUPadanju21
+	- proveriGlavnuDijagonaluUPenjanju21
+	- proveriDijagonaluUPenjanju31
+	- proveriDijagonaluUPenjanju41
+
+Sve gore navedene funkcije su ispod objasnjene detaljno.
+	
+proveriVisinu
+  - Pozivamo proveriVisinuStubica i prosledjujemo joj redom stubice.
+proveriVisinuStubica
+  - Ukoliko smo dosli do poslednja dva polja za proveru, pozivamo proveraPoslednjaDvaPolja i u zavisnosti od vrednosti polja inkrementiramo odgovarajucu promenljivu, u suprotnom pozivamo proveraSusednihPolja i vrsimo proveru jednakosti odgovarajucih polja. 
+
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X.
+
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      -       -       -       - 
+    - -     - -     - -     - - 
+  - - -   - - -   - - -   - - - 
+X - - - - - - - - - - - - - - - 
+X - -   - - -   - - -   - - -   
+X -     - -     - -     - -     
+X       -       -       -       
+0 1 2 3 4 5 6 7 8 9 A B C D E F  
+
+proveraPoNivoima
+  - Pozivamo proveraPoVrstiK i prosledjujemo joj redom vrste za dalju proveru.
+proveraPoVrstiK
+  - Pozivamo proveraPoVrstiKNivouK i prosledjujemo joj redom stubice trenutne vrste.
+proveraPoVrstiKNivouK
+  - Ukoliko je prvo polje provere razlicito od -, pozivamo proveraPoVrstiKNivouKDublje i vrsimo dalju proveru.
+proveraPoVrstiKNivouKDublje
+  - Ukoliko smo dosli do poslednja dva polja za ispitivanje jednakosti, pozivamo proveraPoslednjaDvaPoljaPoNivou i u zavisnosti od vrednosti polja inkrementiramo odgovarajucu promenljivu, u suprotnom pozivamo proveraSusednihPoljaPoNivou i vrsimo proveru jednakosti odgovarajuca 2 polja.
+
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X.
+
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      -       -       -       - 
+    - -     - -     - -     - - 
+  - - -   - - -   - - -   - - - 
+- - - X - - - - - - - - - - - - 
+- - X   - - -   - - -   - - -   
+- X     - -     - -     - -     
+X       -       -       -       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+proveraPoNivoimaSuprotanSmer1
+  - Pozivamo proveraPoNivoimaSuprotanSmer2 i prosledjujemo redom stubice prve vrste.
+proveraPoNivoimaSuprotanSmer2
+  - Pozivamo proveraPoNivoimaSuprotanSmer3 i prosledjujemo redom polja trenutnog stubica za proveru.
+proveraPoNivoimaSuprotanSmer3
+  - Pozivamo proveraPoNivoimaSuprotanSmer4 ukoliko je trenutno polje provere razlicito od 0.
+proveraPoNivoimaSuprotanSmer4
+  - Ako smo ispitali za ostala odgovarajuca polja da li su jednaka (Pozivom proveraPoNivoimaSuprotanSmer6), onda proveravamo poslednje polje pozivom proveraPoNivoimaSuprotanSmer5 i inkrementiramo odgovarajucu promenljivu.
+
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X. 
+ 
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      -       -       -       - 
+    - -     - -     - -     - - 
+  - - -   - - -   - - -   - - - 
+- - - - - - - - - - - - - - - - 
+- - -   - - -   - - -   - - -   
+- -     - -     - -     - -     
+X       X       X       X       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+proveriGlavnuDijagonalu11
+  - Pozivamo proveriGlavnuDijagonalu12 za svaki nivo.
+proveriGlavnuDijagonalu12
+  - Ukoliko je polje razlicito od -, nastavljamo ispitivanje pozivom proveriGlavnuDijagonalu13.
+proveriGlavnuDijagonalu13
+  - Ispitujemo jednakost pozivom proveriGlavnuDijagonalu15 sve dok ne dodjemo do poslednjeg polja, onda pozivamo proveriGlavnuDijagonalu14 i u zavisnosti od vrednosti polja inkrementiramo odgovarajucu promenljivu.
+
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X.
+
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      -       -       -       - 
+    - -     - -     - -     - - 
+  - - -   - - -   - - -   - - - 
+- - - - - - - - - - - - - - - X 
+- - -   - - -   - - X   - - -   
+- -     - X     - -     - -     
+X       -       -       -       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+proveriGlavnuDijagonalu12
+  - Radi slicno kaoproveriGlavnuDijagonalu11, samo sto ispituje ze suprotnu dijagonalu.
+
+Ova funkcija bi detektovala sledecu kombinaciju i vrednost X bi bila 3, dok bi vrednost O bila 1.
+
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      O       -       -       - 
+    - X     O -     - -     - - 
+  - - X   - X -   O - -   - - - 
+- - - X - - X - - X - - O - - - 
+- - -   - - X   - X -   X - -   
+- -     - -     - X     X -     
+-       -       -       X       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+proveriDijagonaluUPenjanju11
+  - Poziva proveriDijagonaluUPenjanju12 za svaku kolonu.
+proveriDijagonaluUPenjanju12
+  - Ukoliko je polje razlicito od -, testiramo za ostala polja pozivom proveriDijagonaluUPenjanju15 sve dok ne stignemo do poslednjeg, nakon cega pozivamo proveriDijagonaluUPenjanju14 i u zavisnosti od vrednosti polja inkrementiramo odgovarajucu promenljivu.
+ 
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X.
+ 
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      -       -       -       - 
+    - -     - -     - -     - - 
+  - - -   - - -   - - -   X - - 
+- - - - - - - - - X - - - X - - 
+- - -   - X -   - X -   - X -   
+- X     - X     - X     - X     
+-       -       -       -       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+proveriDijagonaluUPenjanju21
+  - Funkcionise identicno kao proveriDijagonaluUPenjanju11, samo sto sada proveravamo kombinacije od vrha na dole.
+  
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X.
+ 
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      -       -       -       - 
+    - -     - -     - -     - - 
+  - - -   - - -   - - -   - - - 
+X - - - - - - - - - - - - - - - 
+X - -   X - -   - - -   - - -   
+X -     X -     X -     - -     
+X       X       X       X       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+proveriGlavnuDijagonaluUPenjanju1
+  - Proveravamo da li ima kombinacije od n karaktera na glavnoj dijagonali "u penjanju".
+  
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X.
+  
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      -       -       -       X 
+    - -     - -     - -     - X 
+  - - -   - - -   - X -   - - X 
+- - - - - - - - - - X - - - - X 
+- - -   - X -   - - X   - - -   
+- -     - X     - -     - -     
+X       -       -       -       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+proveriGlavnuDijagonaluUPadanju1
+  - Proveravamo de li ima kombinacije od n karaktera na glavnoj dijagonali "u padanju".
+  
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X.
+
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      -       -       -       - 
+    - -     - -     - -     - - 
+  - - -   - - -   - - -   - - - 
+X - - - - X - - - - X - - - - X 
+X - -   - X -   - - X   - - -   
+X -     - X     - -     - -     
+X       -       -       -       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+proveriGlavnuDijagonaluUPadanju21
+  - Identicna proveriGlavnuDijagonaluUPadanju1, samo proveravamo za suprotnu dijagonalu.
+  
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X.
+
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      X       -       -       - 
+    - X     - -     - -     - - 
+  - - X   - X -   - - -   - - - 
+- - - X - - X - - - - - - - - - 
+- - -   - - X   - X -   - - -   
+- -     - -     - X     - -     
+-       -       -       X       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+proveriGlavnuDijagonaluUPenjanju21
+  - Identicna proveriGlavnuDijagonaluUPenjanju1, samo proveravamo za suprotnu dijagonalu.
+  
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X.
+
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      -       -       -       - 
+    - -     - -     - -     - - 
+  - - -   - X -   X - -   - - - 
+- - - X - - X - - X - - X - - - 
+- - -   - - X   - X -   X - -   
+- -     - -     - X     X -     
+-       -       -       X       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+proveriDijagonaluUPenjanju31
+  - Funkcionise identicno proveriDijagonaluUPenjanju11, samo sto proveravamo za suprotan smer sada.
+  
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X.
+
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      X       -       -       - 
+    - X     - -     - -     - - 
+  - X X   - - -   - - -   - - - 
+- - X X - - - - - - - - - - - - 
+- X X   - - -   - - -   - - -   
+- X     - -     - -     - -     
+X       -       -       -       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+proveriDijagonaluUPenjanju41
+  - Funkcionise identicno proveriDijagonaluUPenjanju31, samo sto proveravamo sada u suprotnom smeru.
+  
+Gore objasnjena funkcija bi detektovala sledecu kombinaciju i inkrementirala skor igracu X.
+
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+      -       -       -       - 
+    - -     - -     - -     - - 
+  - - -   - - -   - - -   - - - 
+X X X X - - - - - - - - - - - - 
+X X X   - - -   - - -   - - -   
+X X     - -     - -     - -     
+X       -       -       -       
+0 1 2 3 4 5 6 7 8 9 A B C D E F
